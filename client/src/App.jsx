@@ -28,7 +28,7 @@ export default function App() {
   const handleSearch = async (query) => {
     setLoading(true);
     try {
-      const { data } = await axios.get("http://localhost:5000/api/songs/search", {
+      const { data } = await axios.get("https://musicapp-3n2d.onrender.com/api/songs/search", {
         params: { q: query }
       });
       setSongs(data.data);
