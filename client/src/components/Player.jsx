@@ -80,8 +80,7 @@ const Player = ({ song }) => {
         </button>
       </div>
 
-      {/* Progress Bar */}
-      <div className="flex items-center text-white gap-4 text-sm">
+      <div className=" flex items-center text-white gap-4 text-sm">
         <span>{formatTime(currentTime)}</span>
         <input
           type="range"
