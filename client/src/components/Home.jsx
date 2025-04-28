@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 
 const Home = ({
@@ -7,6 +7,7 @@ const Home = ({
   onToggleFavourite,
   favourites,
   onSearch,
+  loading,
 }) => {
   const [searchSong, setSearchSong] = useState("");
 
@@ -15,6 +16,7 @@ const Home = ({
     if (searchSong.trim()) onSearch(searchSong);
     else alert("Search a Song");
   };
+
   return (
     <section>
       <form onSubmit={handleSubmit} className="mb-8 flex">
@@ -24,14 +26,17 @@ const Home = ({
           onChange={(e) => setSearchSong(e.target.value)}
           placeholder="Search for a song or artist..."
           className="flex-1 px-4 py-2 rounded-l bg-[#232323] text-white border-0 focus:ring-2 focus:ring-green-500"
+          disabled={loading}
         />
         <button
           type="submit"
           className="px-6 py-2 bg-green-500 text-white font-bold rounded-r hover:bg-green-400 transition"
+          disabled={loading}
         >
           Search
         </button>
       </form>
+    {loading ? (<div className="text-[#646464] mt-4 text-4xl flex justify-center">Loading songs...</div>) : (<div>
       <h1 className="text-2xl font-bold text-white mb-8">Results</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {songs.map((song) => (
@@ -56,6 +61,7 @@ const Home = ({
                     e.stopPropagation();
                     onToggleFavourite(song);
                   }}
+
                   className={`text-sm px-3 py-1 rounded font-bold focus:outline-none flex items-center ${
                     favourites.find((s) => s.id === song.id)
                       ? "bg-[#232323]"
@@ -79,6 +85,7 @@ const Home = ({
           Search for songs to begin!
         </div>
       )}
+          </div>)}
     </section>
   );
 };

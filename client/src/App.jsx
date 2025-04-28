@@ -4,8 +4,7 @@ import Home from "./components/Home";
 import Sidebar from "./components/Sidebar";
 import Player from "./components/Player";
 
-
-export default function App() {
+const App = () => {
   const [songs, setSongs] = useState([]);
   const [currentSong, setCurrentSong] = useState(null);
   const [recents, setRecents] = useState([]);
@@ -14,7 +13,9 @@ export default function App() {
 
   const handlePlaySong = (song) => {
     setCurrentSong(song);
-    setRecents((prev) => [song, ...prev.filter((s) => s.id !== song.id)].slice(0, 8));
+    setRecents((prev) =>
+      [song, ...prev.filter((s) => s.id !== song.id)].slice(0, 8)
+    );
   };
 
   const handleToggleFavourite = (song) => {
@@ -26,19 +27,21 @@ export default function App() {
   };
 
   const handleSearch = async (query) => {
-    setLoading(true);
     try {
-      const { data } = await axios.get("https://musicapp-3n2d.onrender.com/api/songs/search", {
-        params: { q: query }
-      });
+      setLoading(true);
+      const { data } = await axios.get(
+        "https://musicapp-3n2d.onrender.com/api/songs/search",
+        {
+          params: { q: query },
+        }
+      );
       setSongs(data.data);
     } catch {
       alert("Error fetching songs from backend.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
-
-
 
   return (
     <div className="flex min-h-screen bg-gradient-to-b from-[#121212] to-[#181818]">
@@ -47,7 +50,7 @@ export default function App() {
         favourites={favourites}
         onPlaySong={handlePlaySong}
         setSongs={setSongs}
-      />
+        />
       <main className="flex-1 p-8 overflow-y-auto">
         <Home
           songs={songs}
@@ -55,10 +58,12 @@ export default function App() {
           onToggleFavourite={handleToggleFavourite}
           favourites={favourites}
           onSearch={handleSearch}
+          loading={loading}
         />
-        {loading && <div className="text-white mt-4">Loading songs...</div>}
       </main>
       <Player song={currentSong} />
     </div>
   );
-}
+};
+
+export default App;
