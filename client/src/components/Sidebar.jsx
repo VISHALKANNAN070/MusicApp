@@ -25,8 +25,9 @@ const Sidebar = ({ recents, favourites, onPlaySong, setSongs }) => {
                     style={{ display: "inline-block" }}
                   />
                 )}
-                {song.title}
-              </button>
+                    {song.title.length > 20
+                      ? song.title.slice(0, 20) + "..."
+                      : song.title}{" "}              </button>
             </li>
           ))}
         </ul>
@@ -49,9 +50,9 @@ const Sidebar = ({ recents, favourites, onPlaySong, setSongs }) => {
                     style={{ display: "inline-block" }}
                   />
                 )}
-                {song.title.length > 15
-                  ? song.title.slice(0, 15) + "..."
-                  : song.title}
+                    {song.title.length > 25
+                      ? song.title.slice(0, 25) + "..."
+                      : song.title}{" "}
               </button>
             </li>
           ))}
