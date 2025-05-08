@@ -5,7 +5,7 @@ const Sidebar = ({ recents, favourites, onPlaySong, setSongs }) => {
       <div>
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-lg font-bold tracking-wide ">Recents </h2>
-          <FaHome onClick={(e)=>setSongs([])} />
+          <FaHome onClick={(e) => setSongs([])} />
         </div>
         <ul className="mb-8 space-y-2">
           {recents.length === 0 && (
@@ -49,7 +49,9 @@ const Sidebar = ({ recents, favourites, onPlaySong, setSongs }) => {
                     style={{ display: "inline-block" }}
                   />
                 )}
-                {song.title[0]!=='(' ? song.title.split('(')[0].trim() : song.title}
+                {song.title.length > 15
+                  ? song.title.slice(0, 15) + "..."
+                  : song.title}
               </button>
             </li>
           ))}
