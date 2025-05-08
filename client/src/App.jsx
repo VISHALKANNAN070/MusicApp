@@ -3,6 +3,8 @@ import axios from "axios";
 import Home from "./components/Home";
 import Sidebar from "./components/Sidebar";
 import Player from "./components/Player";
+// import Register from "./components/Register";
+// import Login from "./components/Login";
 
 const App = () => {
   const [songs, setSongs] = useState([]);
@@ -10,6 +12,8 @@ const App = () => {
   const [recents, setRecents] = useState([]);
   const [favourites, setFavourites] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(null);
+  // const [showLogin, setShowLogin] = useState(true);
 
   const handlePlaySong = (song) => {
     setCurrentSong(song);
@@ -43,25 +47,44 @@ const App = () => {
     }
   };
 
+  // const handleToggleLoginRegister = () => {
+  //   setShowLogin(!showLogin);
+  // };
+
   return (
     <div className="flex min-h-screen bg-gradient-to-b from-[#121212] to-[#181818]">
-      <Sidebar
-        recents={recents}
-        favourites={favourites}
-        onPlaySong={handlePlaySong}
-        setSongs={setSongs}
-        />
-      <main className="flex-1 p-8 overflow-y-auto">
-        <Home
-          songs={songs}
-          onPlaySong={handlePlaySong}
-          onToggleFavourite={handleToggleFavourite}
-          favourites={favourites}
-          onSearch={handleSearch}
-          loading={loading}
-        />
-      </main>
-      <Player song={currentSong} />
+      {/* {user ? ( */}
+        <>
+          <Sidebar
+            recents={recents}
+            favourites={favourites}
+            onPlaySong={handlePlaySong}
+            setSongs={setSongs}
+          />
+          <main className="flex-1 p-8 overflow-y-auto">
+            <Home
+              songs={songs}
+              onPlaySong={handlePlaySong}
+              onToggleFavourite={handleToggleFavourite}
+              favourites={favourites}
+              onSearch={handleSearch}
+              loading={loading}
+            />
+          </main>
+          <Player song={currentSong} />
+        </>
+      {/* ) : (
+        <div className="flex items-center justify-center w-full h-full">
+          {showLogin ? (
+            <Login
+              setUser={setUser}
+              handleToggleLoginRegister={handleToggleLoginRegister}
+            />
+          ) : (
+            <Register setUser={setUser} />
+          )}
+        </div>
+      )} */}
     </div>
   );
 };
