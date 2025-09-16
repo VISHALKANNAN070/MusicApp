@@ -38,7 +38,7 @@ This application is actively being developed. Here's what's planned for future r
 * **Frontend**: [React.js](https://react.dev/), [React Router](https://reactrouter.com/), [Axios](https://axios-http.com/)
 * **Backend**: [Node.js](https://nodejs.org/), [Express.js](https://expressjs.com/)
 * **Database (Planned)**: [MongoDB](https://www.mongodb.com/) with [Mongoose](https://mongoosejs.com/) ODM
-* **Current API**: Third-party Music API (e.g., [Deezer API](https://developers.deezer.com/api) or similar for previews)
+* **Current API**: Third-party Music API ([Deezer API](https://developers.deezer.com/api))
 * **Future API**: [Spotify Web API](https://developer.spotify.com/documentation/web-api/)
 * **Authentication (Planned)**: OAuth 2.0 (e.g., Passport.js for Spotify authentication)
 
